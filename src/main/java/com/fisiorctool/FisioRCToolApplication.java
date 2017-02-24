@@ -12,15 +12,15 @@ import com.fisiorctool.configuration.WebMvcConfiguration;;
 
 @Import({JpaConfiguration.class, SecurityConfiguration.class, WebMvcConfiguration.class})
 @SpringBootApplication(scanBasePackages = { "com.fisiorctool" })
-public class AngularMvcApplication extends SpringBootServletInitializer {
+public class FisioRCToolApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AngularMvcApplication.class, args);
+		SpringApplication.run(FisioRCToolApplication.class, args);
 	}
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(AngularMvcApplication.class);
+        return application.sources(FisioRCToolApplication.class);
     }
 
 }

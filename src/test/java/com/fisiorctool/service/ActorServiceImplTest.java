@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fisiorctool.AngularMvcApplication;
+import com.fisiorctool.FisioRCToolApplication;
 import com.fisiorctool.model.Actor;
 import com.fisiorctool.service.ActorServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AngularMvcApplication.class})
+@ContextConfiguration(classes = {FisioRCToolApplication.class})
 @Transactional
 public class ActorServiceImplTest {
 	
