@@ -1,4 +1,4 @@
-package com.example;
+package com.fisiorctool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
 
-import com.example.configuration.JpaConfiguration;
-import com.example.configuration.SecurityConfiguration;
-import com.example.configuration.WebMvcConfiguration;;
+import com.fisiorctool.configuration.JpaConfiguration;
+import com.fisiorctool.configuration.SecurityConfiguration;
+import com.fisiorctool.configuration.WebMvcConfiguration;;
 
 @Import({JpaConfiguration.class, SecurityConfiguration.class, WebMvcConfiguration.class})
 @SpringBootApplication(scanBasePackages = { "com.example" })

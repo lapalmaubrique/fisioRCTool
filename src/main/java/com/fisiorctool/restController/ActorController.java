@@ -1,4 +1,4 @@
-package com.example.restController;
+package com.fisiorctool.restController;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dto.ActorDTO;
-import com.example.model.Actor;
-import com.example.service.ActorService;
+import com.fisiorctool.dto.ActorDTO;
+import com.fisiorctool.model.Actor;
+import com.fisiorctool.service.ActorService;
 
 @RestController
 @RequestMapping(value = "/actores/")

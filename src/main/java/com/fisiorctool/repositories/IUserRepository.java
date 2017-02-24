@@ -1,10 +1,10 @@
-package com.example.repositories;
+package com.fisiorctool.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.example.model.User;
+import com.fisiorctool.model.User;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {

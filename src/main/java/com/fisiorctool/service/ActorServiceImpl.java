@@ -1,12 +1,12 @@
-package com.example.service;
+package com.fisiorctool.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.model.Actor;
-import com.example.repositories.IActorRepository;
+import com.fisiorctool.model.Actor;
+import com.fisiorctool.repositories.IActorRepository;
 
 @Service
 public class ActorServiceImpl implements ActorService{

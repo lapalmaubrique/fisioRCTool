@@ -1,8 +1,8 @@
-package com.example.service;
+package com.fisiorctool.service;
 
 import java.util.List;
 
-import com.example.model.Actor;
+import com.fisiorctool.model.Actor;
 
 public interface ActorService {
 	

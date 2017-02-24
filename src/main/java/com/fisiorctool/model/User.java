@@ -1,4 +1,4 @@
-package com.example.model;
+package com.fisiorctool.model;
 
 import java.io.Serializable;
 import java.util.HashSet;

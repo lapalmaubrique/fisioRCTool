@@ -1,4 +1,4 @@
-package com.example.service;
+package com.fisiorctool.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,8 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.model.UserRole;
-import com.example.repositories.IUserRepository;
+import com.fisiorctool.model.UserRole;
+import com.fisiorctool.repositories.IUserRepository;
 
 @Service("myUserDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
@@ -27,7 +27,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		com.example.model.User user = userRepository.findByUserName(username);
+		com.fisiorctool.model.User user = userRepository.findByUserName(username);
 		if(user != null){
 			List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 			return buildUserForAuthentication(user, authorities); 
@@ -37,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	}
 	
 	// Converts User to  org.springframework.security.core.userdetails.User
-	private User buildUserForAuthentication(com.example.model.User user, List<GrantedAuthority> authorities) {
+	private User buildUserForAuthentication(com.fisiorctool.model.User user, List<GrantedAuthority> authorities) {
 		return new User(user.getUsername(), user.getPassword(),
 			user.isEnabled(), true, true, true, authorities);
 	}

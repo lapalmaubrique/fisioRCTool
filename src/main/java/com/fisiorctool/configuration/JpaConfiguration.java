@@ -1,4 +1,4 @@
-package com.example.configuration;
+package com.fisiorctool.configuration;
 
 import java.util.Properties;
 
