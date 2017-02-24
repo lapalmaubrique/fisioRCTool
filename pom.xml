@@ -86,15 +86,32 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<profiles>
-						<profile>local</profile>
-						<profile>pro</profile>
-					</profiles>
-				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
+<profiles>
+	<profile>
+		<id>local</id>
+		<properties>
+			<activatedProperties>local</activatedProperties>
+		</properties>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+	</profile>
+	<profile>
+		<id>pro</id>
+		<properties>
+			<activatedProperties>pro</activatedProperties>
+		</properties>
+	</profile>
+</profiles>
 
 </project>

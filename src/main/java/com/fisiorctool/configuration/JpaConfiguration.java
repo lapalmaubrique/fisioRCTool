@@ -32,7 +32,7 @@ import com.zaxxer.hikari.HikariDataSource;
         entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application-${spring.profiles.active}.properties")
 public class JpaConfiguration {
 	
 	@Autowired
