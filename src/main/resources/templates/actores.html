@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8" />
+	<title>Actores</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+ 	<link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  	<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+ 
+<body ng-controller="ActorsController" ng-init="getAllActors()">
+<div class="container">
+	<span class="label label-success" ng-hide="msg==''" style="font-size:12px;margin:5px;">{{msg}}</span>
+	<button type="button" class="btn btn-default" ng-click="open()">Nuevo</button>
+	<a th:href="@{/logout}" href="logout"> Logout </a>
+	<table class="table table-bordered table-striped table-hover" ng-show="actors != null" style="margin-top:5px;">
+		<thead>
+	      <tr>
+	        <th>Firstname</th>
+	        <th>Lastname</th>
+	        <th>Last Update</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="actor in data" ng-click="getActor(actor.id)">
+	        <td>{{actor.firstName}}</td>
+	        <td>{{actor.lastName}}</td>
+	        <td>{{actor.lastUpdateString}}</td>
+	      </tr>
+	    </tbody>
+	</table>
+	
+	<!-- Pagination -->
+	<div class="text-center">
+		<ul class="pagination">
+		  <li ng-repeat="n in range(numPages)" ng-class="activeCurrentPage(n)" ng-click="getDataPage(n)">
+		  	<span style="cursor:pointer;">{{$index+1}}</span>
+		  </li>
+		</ul>
+	</div>
+	
+	<!-- Modal -->
+	<div modal="showModal" class="modal fade" close="cancel()">
+		<div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		          <h4>Actor</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form name="myForm">
+		      		<input type="hidden" id="csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		      		<input type="hidden" id="actorId" ng-model="currentActor.id" />
+		          	<div class="form-group">
+					  <label for="usr">First Name</label>
+					  <input type="text" class="form-control" id="firstname" ng-model="currentActor.firstName" />
+					</div>
+		          	<div class="form-group">
+					  <label for="usr">Last Name</label>
+					  <input type="text" class="form-control" id="lastname" ng-model="currentActor.lastName" />
+					</div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" ng-click="deleteActor()">Eliminar</button>
+		        <button class="btn btn-success" ng-click="saveActor()">Guardar</button>
+		        <button class="btn" ng-click="cancel()">Cancelar</button>
+		      </div>
+			</div>
+		</div>
+    </div>
+    
+</div>
+<script src="webjars/angularjs/1.2.19/angular.min.js"></script>
+<script src="js/services.js"></script>
+<script src="js/angular-ui-bootstrap-modal.js"></script>
+<script src="js/spring-security-csrf-token-interceptor.js"></script>
+</body>
+</html>

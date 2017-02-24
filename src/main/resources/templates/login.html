@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/signin.css" />
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<form class="form-signin" name="loginForm" th:action="@{/login}" action="/login" method="POST">
+			<p th:if="${param.logout}" class="alert">Has sido desconectado</p>
+			<p th:if="${param.error}" class="alert alert-error">Usuario o contraseña incorrectos</p>
+			<h2 class="form-signin-heading">Login</h2>
+			<label for="inputUser" class="sr-only">User</label> 
+			<input type="text" id="j_username" name="j_username" class="form-control" placeholder="User"/>
+			<label for="inputPassword" class="sr-only">Password</label> 
+			<input type="password" id="j_password" name="j_password" class="form-control" placeholder="Password"/>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
+	</div>
+</body>
+</html>
