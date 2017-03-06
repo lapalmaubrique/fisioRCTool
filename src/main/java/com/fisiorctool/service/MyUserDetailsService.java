@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,19 +17,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fisiorctool.model.UserRole;
-import com.fisiorctool.repositories.IUserRepository;
 
 @Service("myUserDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private IUserRepository userRepository;
+	private UserService userService;
 
 	@Transactional(readOnly = true)
 	@Override
-	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		com.fisiorctool.model.User user = userRepository.findByUserName(username);
+	public UserDetails loadUserByUsername(final String username) {
+		com.fisiorctool.model.User user = userService.findByEmail(username);
 		if(user != null){
+			if(!user.isEnabled()){
+				throw new DisabledException("El usuario no está activo");
+			}
 			List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 			return buildUserForAuthentication(user, authorities); 
 		} else {
@@ -38,7 +41,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	// Converts User to  org.springframework.security.core.userdetails.User
 	private User buildUserForAuthentication(com.fisiorctool.model.User user, List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(),
+		return new User(user.getEmail(), user.getPassword(),
 			user.isEnabled(), true, true, true, authorities);
 	}
 	

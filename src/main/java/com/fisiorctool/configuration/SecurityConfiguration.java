@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.fisiorctool.handler.AuthenticationFailureHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -23,6 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Qualifier("myUserDetailsService")
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private AuthenticationFailureHandler authenticationFailureHandler;
 	
 	@Autowired
 	@Order(Ordered.HIGHEST_PRECEDENCE)
@@ -39,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and()
 			.formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/actores")
 				.usernameParameter("j_username").passwordParameter("j_password")
-			
+				.failureHandler(authenticationFailureHandler)
 		.and()
 		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.and()

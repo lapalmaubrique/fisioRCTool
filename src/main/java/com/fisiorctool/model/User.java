@@ -1,77 +1,98 @@
 package com.fisiorctool.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 3868269731826822792L;
-	
-	private String username;
-	private String password;
-	private boolean enabled;
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
-
-	public User() {
-	}
-
-	public User(String username, String password, boolean enabled) {
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-	}
-
-	public User(String username, String password,
-		boolean enabled, Set<UserRole> userRole) {
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.userRole = userRole;
-	}
 
 	@Id
-	@Column(name = "username", unique = true,
-		nullable = false, length = 45)
-	public String getUsername() {
-		return this.username;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private Integer id;
+
+	@Column(name = "full_name")
+	private String fullName;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "enabled")
+	private boolean enabled;
+
+	@Column(name = "registration_date")
+	private Date registrationDate;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	@Column(name = "password",
-		nullable = false, length = 60)
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	@Column(name = "enabled", nullable = false)
 	public boolean isEnabled() {
-		return this.enabled;
+		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
 	public Set<UserRole> getUserRole() {
-		return this.userRole;
+		return userRole;
 	}
 
 	public void setUserRole(Set<UserRole> userRole) {

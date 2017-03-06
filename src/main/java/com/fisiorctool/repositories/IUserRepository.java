@@ -9,7 +9,7 @@ import com.fisiorctool.model.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	
-	@Query("SELECT u FROM User u WHERE u.username = ?1")
-	public User findByUserName(String user);
+	@Query("SELECT u FROM User u WHERE u.email = ?1")
+	public User findByEmail(String email);
 
 }

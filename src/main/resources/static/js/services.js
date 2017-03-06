@@ -4,8 +4,6 @@ var app = angular.module('app', [ "ui.bootstrap.modal", "spring-security-csrf-to
     csrfProvider.config()
 });
 
-//var app = angular.module('app', [ "ui.bootstrap.modal" ]);
-
 app.controller('ActorsController', [ '$scope', '$http', '$timeout', '$location',
 
 function($scope, $http, $timeout, $location) {
@@ -76,8 +74,6 @@ function($scope, $http, $timeout, $location) {
 				$scope.msg = 'Se ha producido un error';
 			});
 		} else {
-			//actor._csrf = document.getElementById("csrf").value;
-			//{'X-CSRF-TOKEN' :  }
 			$http.put(baseURL+'/update', actor)
 			.success(function(data) {
 				$scope.showModal = false;
@@ -91,24 +87,6 @@ function($scope, $http, $timeout, $location) {
 			}).error(function(data) {
 				$scope.msg = 'Se ha	producido un error';
 			});
-//			var config = {
-//				method:'PUT',
-//				url: baseURL+'/update',
-//				data: actor,
-//				headers: {'X-CSRF-TOKEN': document.getElementById("csrf").value}
-//			};
-//			
-//			var response=$http(config);
-//			response.success(function(data) {
-//				$scope.showModal = false;
-//				$scope.msg='Actor actualizado correctamente';
-//				$timeout(function() {
-//					$scope.getAllActors();
-//					$scope.currentPage = 0;
-//					$scope.msg='';
-//					$scope.currentActor={};
-//				  },2000);
-//			})
 		}
 	}
 	
