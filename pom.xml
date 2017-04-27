@@ -65,6 +65,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
@@ -96,22 +100,22 @@
 		</resources>
 	</build>
 
-<profiles>
-	<profile>
-		<id>local</id>
-		<properties>
-			<activatedProperties>local</activatedProperties>
-		</properties>
-		<activation>
-			<activeByDefault>true</activeByDefault>
-		</activation>
-	</profile>
-	<profile>
-		<id>pro</id>
-		<properties>
-			<activatedProperties>pro</activatedProperties>
-		</properties>
-	</profile>
-</profiles>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<activatedProperties>local</activatedProperties>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<activatedProperties>pro</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

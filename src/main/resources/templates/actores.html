@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Actores</title>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
  	<link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
   	<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
@@ -50,7 +51,6 @@
 		      </div>
 		      <div class="modal-body">
 		      	<form name="myForm">
-		      		<input type="hidden" id="csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		      		<input type="hidden" id="actorId" ng-model="currentActor.id" />
 		          	<div class="form-group">
 					  <label for="usr">First Name</label>

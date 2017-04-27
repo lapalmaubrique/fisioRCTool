@@ -19,7 +19,7 @@
                         // intercept HTTP request only for the configured HTTP types
                         if (csrfService.settings.httpTypes.indexOf(config.method.toUpperCase()) > -1) {
                             //config.headers[csrfService.settings.csrfTokenHeader] = csrfService.token;
-                        	config.headers[csrfService.settings.csrfTokenHeader] = document.getElementById("csrf").value;
+                        	config.headers[csrfService.settings.csrfTokenHeader] = document.getElementsByTagName('meta')[1].getAttribute('content');
                         }
                         return config || $q.when(config);
                     },

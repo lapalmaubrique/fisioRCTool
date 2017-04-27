@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="login" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="header">
+<head>
+<title>Confirmación de registro</title>
+<script src="../js/login.js"></script>
+</head>
+<body ng-controller="LoginController" ng-init="activeUser()">
+	<input type="hidden" th:value="${token}" name="token" id="token" />
+	<div class="container">
+		<div class="jumbotron" style="margin-top: 50px;">
+			<h2>Se ha registrado correctamente.</h2>
+			<p>Se redirigirá automáticamente en...<span id="segundos"></span></p>
+		</div>
+	</div>
+</body>
+</html>
