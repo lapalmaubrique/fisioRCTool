@@ -105,5 +105,6 @@ function($scope, $http, $timeout, $location) {
 			$scope.msg = 'Se ha	producido un error';
 		});
 	}
+    
 
 } ]);
